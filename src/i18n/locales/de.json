@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "TOT",
+    "subtitle": "Travel of Traveler — Erleben Sie Sokcho in 3D"
+  },
+  "header": {
+    "language": "Sprache"
+  },
+  "panel": {
+    "layers": "Ebenen",
+    "pois": "Sehenswürdigkeiten",
+    "track": "Route",
+    "shadows": "Schattenanalyse"
+  },
+  "tracking": {
+    "title": "Aktivitätsverfolgung",
+    "start": "Verfolgung starten",
+    "stop": "Verfolgung stoppen",
+    "clear": "Route löschen",
+    "distance": "Distanz",
+    "denied": "Standortberechtigung wurde verweigert."
+  },
+  "sun": {
+    "title": "Schatten- / Sonnenanalyse",
+    "time": "Uhrzeit"
+  },
+  "poi": {
+    "sokchoEye": "Sokcho Eye",
+    "sokchoMarket": "Sokcho Touristen- und Fischmarkt",
+    "cassiaSokcho": "Cassia Sokcho",
+    "seoraksan": "Seoraksan-Nationalpark",
+    "sinheungsa": "Sinheungsa-Tempel",
+    "panel": {
+      "close": "Schließen",
+      "category": "Kategorie",
+      "book": "Buchen / Info"
+    }
+  },
+  "category": {
+    "landmark": "Wahrzeichen",
+    "market": "Markt",
+    "hotel": "Hotel",
+    "restaurant": "Restaurant",
+    "culture": "Kulturerbe",
+    "nature": "Natur"
+  }
+}

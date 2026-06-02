@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "TOT",
+    "subtitle": "Travel of Traveler — Experience Sokcho in 3D"
+  },
+  "header": {
+    "language": "Language"
+  },
+  "panel": {
+    "layers": "Layers",
+    "pois": "Attractions",
+    "track": "Track",
+    "shadows": "Shadow Analysis"
+  },
+  "tracking": {
+    "title": "Activity Tracking",
+    "start": "Start Tracking",
+    "stop": "Stop Tracking",
+    "clear": "Clear Track",
+    "distance": "Distance",
+    "denied": "Location permission was denied."
+  },
+  "sun": {
+    "title": "Shadow / Sunlight Analysis",
+    "time": "Time"
+  },
+  "poi": {
+    "sokchoEye": "Sokcho Eye",
+    "sokchoMarket": "Sokcho Tourist & Fishery Market",
+    "cassiaSokcho": "Kensington Cassia Sokcho",
+    "seoraksan": "Seoraksan National Park",
+    "sinheungsa": "Sinheungsa Temple",
+    "panel": {
+      "close": "Close",
+      "category": "Category",
+      "book": "Book / Info"
+    }
+  },
+  "category": {
+    "landmark": "Landmark",
+    "market": "Market",
+    "hotel": "Hotel",
+    "restaurant": "Restaurant",
+    "culture": "Heritage",
+    "nature": "Nature"
+  }
+}

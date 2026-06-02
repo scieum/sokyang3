@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "TOT",
+    "subtitle": "Travel of Traveler — Découvrez Sokcho en 3D"
+  },
+  "header": {
+    "language": "Langue"
+  },
+  "panel": {
+    "layers": "Calques",
+    "pois": "Sites touristiques",
+    "track": "Parcours",
+    "shadows": "Analyse d'ombre"
+  },
+  "tracking": {
+    "title": "Suivi d'activité",
+    "start": "Démarrer le suivi",
+    "stop": "Arrêter le suivi",
+    "clear": "Effacer le parcours",
+    "distance": "Distance",
+    "denied": "L'autorisation de localisation a été refusée."
+  },
+  "sun": {
+    "title": "Analyse d'ombre / d'ensoleillement",
+    "time": "Heure"
+  },
+  "poi": {
+    "sokchoEye": "Sokcho Eye",
+    "sokchoMarket": "Marché touristique et de la pêche de Sokcho",
+    "cassiaSokcho": "Cassia Sokcho",
+    "seoraksan": "Parc national de Seoraksan",
+    "sinheungsa": "Temple Sinheungsa",
+    "panel": {
+      "close": "Fermer",
+      "category": "Catégorie",
+      "book": "Réserver / Infos"
+    }
+  },
+  "category": {
+    "landmark": "Monument",
+    "market": "Marché",
+    "hotel": "Hôtel",
+    "restaurant": "Restaurant",
+    "culture": "Patrimoine",
+    "nature": "Nature"
+  }
+}

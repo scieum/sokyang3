@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "TOT",
+    "subtitle": "Travel of Traveler — 속초를 3D로 미리 소유하다"
+  },
+  "header": {
+    "language": "언어"
+  },
+  "panel": {
+    "layers": "레이어",
+    "pois": "관광 명소",
+    "track": "이동 궤적",
+    "shadows": "그림자 분석"
+  },
+  "tracking": {
+    "title": "활동 트래킹",
+    "start": "트래킹 시작",
+    "stop": "트래킹 정지",
+    "clear": "궤적 지우기",
+    "distance": "이동 거리",
+    "denied": "위치 권한이 거부되었습니다."
+  },
+  "sun": {
+    "title": "그림자 / 일조 분석",
+    "time": "시각"
+  },
+  "poi": {
+    "sokchoEye": "속초아이",
+    "sokchoMarket": "속초관광수산시장",
+    "cassiaSokcho": "카시아 속초",
+    "seoraksan": "설악산 국립공원",
+    "sinheungsa": "신흥사",
+    "panel": {
+      "close": "닫기",
+      "category": "분류",
+      "book": "예약 / 정보"
+    }
+  },
+  "category": {
+    "landmark": "랜드마크",
+    "market": "상권",
+    "hotel": "호텔",
+    "restaurant": "식당",
+    "culture": "문화재",
+    "nature": "자연"
+  }
+}

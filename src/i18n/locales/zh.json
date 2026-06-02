@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "TOT",
+    "subtitle": "Travel of Traveler — 以 3D 提前体验束草"
+  },
+  "header": {
+    "language": "语言"
+  },
+  "panel": {
+    "layers": "图层",
+    "pois": "景点",
+    "track": "轨迹",
+    "shadows": "阴影分析"
+  },
+  "tracking": {
+    "title": "活动追踪",
+    "start": "开始追踪",
+    "stop": "停止追踪",
+    "clear": "清除轨迹",
+    "distance": "移动距离",
+    "denied": "位置权限被拒绝。"
+  },
+  "sun": {
+    "title": "阴影 / 日照分析",
+    "time": "时间"
+  },
+  "poi": {
+    "sokchoEye": "束草之眼",
+    "sokchoMarket": "束草观光水产市场",
+    "cassiaSokcho": "束草凯莱卡西亚",
+    "seoraksan": "雪岳山国立公园",
+    "sinheungsa": "新兴寺",
+    "panel": {
+      "close": "关闭",
+      "category": "分类",
+      "book": "预订 / 信息"
+    }
+  },
+  "category": {
+    "landmark": "地标",
+    "market": "商圈",
+    "hotel": "酒店",
+    "restaurant": "餐厅",
+    "culture": "文化遗产",
+    "nature": "自然"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "app": {
+    "title": "TOT",
+    "subtitle": "Travel of Traveler — اختبر سوكتشو ثلاثي الأبعاد"
+  },
+  "header": {
+    "language": "اللغة"
+  },
+  "panel": {
+    "layers": "الطبقات",
+    "pois": "المعالم",
+    "track": "المسار",
+    "shadows": "تحليل الظل"
+  },
+  "tracking": {
+    "title": "تتبع النشاط",
+    "start": "بدء التتبع",
+    "stop": "إيقاف التتبع",
+    "clear": "مسح المسار",
+    "distance": "المسافة",
+    "denied": "تم رفض إذن الموقع."
+  },
+  "sun": {
+    "title": "تحليل الظل / أشعة الشمس",
+    "time": "الوقت"
+  },
+  "poi": {
+    "sokchoEye": "عين سوكتشو",
+    "sokchoMarket": "سوق سوكتشو السياحي والسمكي",
+    "cassiaSokcho": "كاسيا سوكتشو",
+    "seoraksan": "حديقة سيوراكسان الوطنية",
+    "sinheungsa": "معبد سينهيونغسا",
+    "panel": {
+      "close": "إغلاق",
+      "category": "الفئة",
+      "book": "حجز / معلومات"
+    }
+  },
+  "category": {
+    "landmark": "معلم",
+    "market": "سوق",
+    "hotel": "فندق",
+    "restaurant": "مطعم",
+    "culture": "تراث",
+    "nature": "طبيعة"
+  }
+}
