@@ -14,7 +14,7 @@ import type { Poi } from '@/types';
  */
 export function CesiumMap() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const viewer = useCesiumViewer(containerRef);
+  const { viewer, error } = useCesiumViewer(containerRef);
   const { t } = useTranslation();
 
   const setSelectedPoi = useAppStore((s) => s.setSelectedPoi);
@@ -114,5 +114,15 @@ export function CesiumMap() {
     viewer.scene.globe.enableLighting = layers.shadows;
   }, [viewer, analysisDate, layers.shadows]);
 
-  return <div ref={containerRef} className="cesium-container" />;
+  return (
+    <>
+      <div ref={containerRef} className="cesium-container" />
+      {error && (
+        <div className="map-error">
+          <p>⚠️ 3D 지도를 불러오지 못했습니다.</p>
+          <code>{error}</code>
+        </div>
+      )}
+    </>
+  );
 }
