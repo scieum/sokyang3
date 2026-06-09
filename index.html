@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="TOT (Travel of Traveler) — 속초·고성·양양을 3D로 미리 소유하는 관광 특화 웹앱" />
+    <!-- 잦은 재배포 시 옛 index.html 캐시로 삭제된 JS를 가리켜 멈추는 문제 방지 -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>TOT — Travel of Traveler</title>
     <script>
       // 번들 평가/실행 중 발생한 오류를 흰 화면/무한 로딩 대신 화면에 표시한다.
@@ -25,16 +29,24 @@
           var r = e.reason;
           showBootError('Promise: ' + (r && (r.stack || r.message) ? r.stack || r.message : r));
         });
-        // 12초가 지나도 앱이 마운트되지 않으면(스플래시가 남아있으면) 안내 + 새로고침 버튼
+        // 6초가 지나도 앱이 안 뜨면(스플래시가 남아있으면) 캐시 문제로 보고
+        // 캐시를 우회해 1회 자동 새로고침한다(무한 루프는 sessionStorage 로 방지).
         setTimeout(function () {
-          var s = document.getElementById('boot-splash');
-          var msg = document.getElementById('boot-splash-msg');
-          if (s && msg) {
-            msg.innerHTML =
-              '로딩이 지연되고 있습니다. <a href="javascript:location.reload(true)" style="color:#2dd4bf;">새로고침</a>' +
-              '<br/>계속 멈춰 있으면 F12 → Console 의 오류를 확인해 주세요.';
+          if (!document.getElementById('boot-splash')) return; // 이미 마운트됨
+          if (!sessionStorage.getItem('tot-reloaded')) {
+            sessionStorage.setItem('tot-reloaded', '1');
+            location.replace(
+              location.pathname + '?v=' + Date.now() + location.hash,
+            );
+            return;
           }
-        }, 12000);
+          var msg = document.getElementById('boot-splash-msg');
+          if (msg) {
+            msg.innerHTML =
+              '앱을 불러오지 못했습니다. <a href="javascript:location.reload(true)" style="color:#2dd4bf;">강력 새로고침</a>' +
+              '<br/>계속 멈추면 F12 → Console 오류를 확인해 주세요.';
+          }
+        }, 6000);
       })();
     </script>
   </head>
