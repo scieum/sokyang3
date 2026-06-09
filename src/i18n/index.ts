@@ -33,6 +33,9 @@ i18n
     fallbackLng: 'ko',
     supportedLngs: ['ko', 'en', 'zh', 'ja', 'ar', 'fr', 'de', 'it'],
     interpolation: { escapeValue: false },
+    // Suspense 비활성화: 번역 미준비 상태에서 렌더가 무한 보류되어
+    // 마운트가 멈추는(무한 로딩) 상황을 원천 차단한다.
+    react: { useSuspense: false },
     detection: {
       // localStorage 영속화 → 재방문 시 언어 유지
       order: ['localStorage', 'navigator'],
