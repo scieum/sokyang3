@@ -64,14 +64,23 @@ export function useCesiumViewer(
           .catch((err) => console.warn('[TOT] Google 3D Tiles 로드 실패:', err));
       }
 
-      // 속초 앵커로 카메라 이동
-      instance.camera.flyTo({
+      // 3D 입체감을 살리기 위한 장면 설정
+      instance.scene.globe.depthTestAgainstTerrain = true;
+      instance.scene.globe.enableLighting = true;
+
+      // 속초 앵커를 비스듬히 내려다보는 3D 오블리크 시점
+      // (정남쪽 약간 아래에서 북쪽을 바라보며 pitch -35°)
+      instance.camera.setView({
         destination: Cesium.Cartesian3.fromDegrees(
           SOKCHO_ANCHOR.longitude,
-          SOKCHO_ANCHOR.latitude,
-          SOKCHO_ANCHOR.height,
+          SOKCHO_ANCHOR.latitude - 0.018,
+          900,
         ),
-        duration: 0,
+        orientation: {
+          heading: Cesium.Math.toRadians(0),
+          pitch: Cesium.Math.toRadians(-35),
+          roll: 0,
+        },
       });
 
       viewerRef.current = instance;

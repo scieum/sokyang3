@@ -6,6 +6,19 @@ import { useAppStore } from '@/store';
 import { SEED_POIS } from '@/lib/constants';
 import type { Poi } from '@/types';
 
+/** 카테고리별 3D 건물(입체) 형상: 높이(m)·반경(m)·색상. 자연(산)은 건물 없음. */
+const BUILDING: Record<
+  Poi['category'],
+  { height: number; radius: number; color: string } | null
+> = {
+  landmark: { height: 70, radius: 14, color: '#22d3ee' },
+  hotel: { height: 90, radius: 26, color: '#818cf8' },
+  restaurant: { height: 16, radius: 16, color: '#fb923c' },
+  market: { height: 14, radius: 30, color: '#f472b6' },
+  culture: { height: 22, radius: 24, color: '#a3e635' },
+  nature: null,
+};
+
 /**
  * 3D 지도 본체.
  * - POI 마커(① 랜드마크 표시), 클릭 시 정보 패널 연동(④)
@@ -26,41 +39,70 @@ export function CesiumMap() {
   useEffect(() => {
     if (!viewer) return;
 
-    const entities: Cesium.Entity[] = SEED_POIS.map((poi) =>
-      viewer.entities.add({
-        id: `poi-${poi.id}`,
-        position: Cesium.Cartesian3.fromDegrees(
-          poi.position.longitude,
-          poi.position.latitude,
-          poi.position.height ?? 0,
-        ),
-        point: {
-          pixelSize: 12,
-          color: Cesium.Color.fromCssColorString('#2dd4bf'),
-          outlineColor: Cesium.Color.WHITE,
-          outlineWidth: 2,
-          heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
-          disableDepthTestDistance: Number.POSITIVE_INFINITY,
-        },
-        label: {
-          text: t(poi.nameKey),
-          font: '14px sans-serif',
-          pixelOffset: new Cesium.Cartesian2(0, -20),
-          fillColor: Cesium.Color.WHITE,
-          outlineColor: Cesium.Color.BLACK,
-          outlineWidth: 3,
-          style: Cesium.LabelStyle.FILL_AND_OUTLINE,
-          showBackground: true,
-          backgroundColor: Cesium.Color.fromCssColorString('#0f172aCC'),
-        },
-      }),
-    );
+    const entities: Cesium.Entity[] = [];
+
+    SEED_POIS.forEach((poi) => {
+      // 마커(점 + 라벨)
+      entities.push(
+        viewer.entities.add({
+          id: `poi-${poi.id}`,
+          position: Cesium.Cartesian3.fromDegrees(
+            poi.position.longitude,
+            poi.position.latitude,
+            poi.position.height ?? 0,
+          ),
+          point: {
+            pixelSize: 12,
+            color: Cesium.Color.fromCssColorString('#2dd4bf'),
+            outlineColor: Cesium.Color.WHITE,
+            outlineWidth: 2,
+            heightReference: Cesium.HeightReference.CLAMP_TO_GROUND,
+            disableDepthTestDistance: Number.POSITIVE_INFINITY,
+          },
+          label: {
+            text: t(poi.nameKey),
+            font: '14px sans-serif',
+            pixelOffset: new Cesium.Cartesian2(0, -20),
+            fillColor: Cesium.Color.WHITE,
+            outlineColor: Cesium.Color.BLACK,
+            outlineWidth: 3,
+            style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+            showBackground: true,
+            backgroundColor: Cesium.Color.fromCssColorString('#0f172aCC'),
+            disableDepthTestDistance: Number.POSITIVE_INFINITY,
+          },
+        }),
+      );
+
+      // 3D 입체 건물 (자연 카테고리는 제외)
+      const b = BUILDING[poi.category];
+      if (b) {
+        entities.push(
+          viewer.entities.add({
+            id: `bldg-${poi.id}`,
+            position: Cesium.Cartesian3.fromDegrees(
+              poi.position.longitude,
+              poi.position.latitude,
+            ),
+            ellipse: {
+              semiMinorAxis: b.radius,
+              semiMajorAxis: b.radius,
+              height: 0,
+              extrudedHeight: b.height,
+              material: Cesium.Color.fromCssColorString(b.color).withAlpha(0.9),
+              outline: true,
+              outlineColor: Cesium.Color.WHITE.withAlpha(0.35),
+            },
+          }),
+        );
+      }
+    });
 
     const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
     handler.setInputAction((movement: Cesium.ScreenSpaceEventHandler.PositionedEvent) => {
       const picked = viewer.scene.pick(movement.position);
       if (Cesium.defined(picked) && typeof picked.id?.id === 'string') {
-        const id: string = picked.id.id.replace('poi-', '');
+        const id: string = picked.id.id.replace(/^(poi|bldg)-/, '');
         const poi: Poi | undefined = SEED_POIS.find((p) => p.id === id);
         if (poi) setSelectedPoi(poi);
       }
@@ -76,8 +118,10 @@ export function CesiumMap() {
   useEffect(() => {
     if (!viewer) return;
     SEED_POIS.forEach((poi) => {
-      const e = viewer.entities.getById(`poi-${poi.id}`);
-      if (e) e.show = layers.pois;
+      const marker = viewer.entities.getById(`poi-${poi.id}`);
+      if (marker) marker.show = layers.pois;
+      const bldg = viewer.entities.getById(`bldg-${poi.id}`);
+      if (bldg) bldg.show = layers.pois;
     });
   }, [viewer, layers.pois]);
 

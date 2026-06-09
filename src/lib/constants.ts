@@ -8,6 +8,15 @@ export const SOKCHO_ANCHOR = {
 } as const;
 
 /**
+ * Wikimedia Commons 실제 사진을 안정적인 Special:FilePath 로 참조한다.
+ * (파일명 기준으로 항상 현재 원본/썸네일로 리다이렉트됨)
+ */
+const wiki = (file: string, width = 640): string =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(
+    file,
+  )}?width=${width}`;
+
+/**
  * 주요 랜드마크/POI 초기 시드 데이터.
  * 실제 운영정보는 추후 공공데이터/Kakao/Naver API로 보강한다.
  */
@@ -29,8 +38,8 @@ export const SEED_POIS: Poi[] = [
       availability: 'inStock',
       waitBaseline: 25,
       photos: [
-        'https://picsum.photos/seed/sokcho-eye-1/640/360',
-        'https://picsum.photos/seed/sokcho-eye-2/640/360',
+        wiki('Korea-Seorak_Mountains_behind_Sokcho-01.jpg'),
+        wiki('Abai_village_-_5433870634.jpg'),
       ],
     },
   },
@@ -51,8 +60,8 @@ export const SEED_POIS: Poi[] = [
       availability: 'inStock',
       waitBaseline: 20,
       photos: [
-        'https://picsum.photos/seed/sokcho-market-1/640/360',
-        'https://picsum.photos/seed/sokcho-market-2/640/360',
+        wiki('Abai_village_-_5433870634.jpg'),
+        wiki('Korea-Seorak_Mountains_behind_Sokcho-01.jpg'),
       ],
     },
   },
@@ -79,11 +88,6 @@ export const SEED_POIS: Poi[] = [
       travel: { walk: 41, car: 9, transit: 23 },
       availability: 'low',
       waitBaseline: 40,
-      photos: [
-        'https://picsum.photos/seed/bongpo-1/640/360',
-        'https://picsum.photos/seed/bongpo-2/640/360',
-        'https://picsum.photos/seed/bongpo-3/640/360',
-      ],
     },
   },
   {
@@ -102,10 +106,6 @@ export const SEED_POIS: Poi[] = [
       priceRange: '₩₩₩',
       travel: { walk: 35, car: 8, transit: 20 },
       availability: 'low',
-      photos: [
-        'https://picsum.photos/seed/cassia-1/640/360',
-        'https://picsum.photos/seed/cassia-2/640/360',
-      ],
     },
   },
   {
@@ -124,8 +124,8 @@ export const SEED_POIS: Poi[] = [
       travel: { walk: 180, car: 22, transit: 45 },
       availability: 'inStock',
       photos: [
-        'https://picsum.photos/seed/seoraksan-1/640/360',
-        'https://picsum.photos/seed/seoraksan-2/640/360',
+        wiki('Seoraksan_Panorama.JPG'),
+        wiki('Korea-Seorak_Mountains_behind_Sokcho-01.jpg'),
       ],
     },
   },
@@ -145,8 +145,8 @@ export const SEED_POIS: Poi[] = [
       travel: { walk: 165, car: 20, transit: 42 },
       availability: 'inStock',
       photos: [
-        'https://picsum.photos/seed/sinheungsa-1/640/360',
-        'https://picsum.photos/seed/sinheungsa-2/640/360',
+        wiki('Korea-Sinheungsa-Bojero-01.jpg'),
+        wiki('Seoraksan_Panorama.JPG'),
       ],
     },
   },

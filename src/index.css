@@ -322,6 +322,12 @@ body,
   font-size: 28px;
 }
 
+.poi-photo-credit {
+  margin: -6px 0 12px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
 .poi-desc {
   font-size: 13px;
   line-height: 1.5;

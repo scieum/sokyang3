@@ -115,6 +115,9 @@ export function PoiPanel() {
           )}
         </div>
       )}
+      {d?.photos && d.photos.length > 0 && (
+        <p className="poi-photo-credit">© Wikimedia Commons</p>
+      )}
 
       {d?.description && <p className="poi-desc">{d.description}</p>}
 
