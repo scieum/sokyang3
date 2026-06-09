@@ -27,13 +27,30 @@
   "poi": {
     "sokchoEye": "Sokcho Eye",
     "sokchoMarket": "Mercato turistico e ittico di Sokcho",
+    "bongpoMeoguri": "Bongpo Meoguri-jip",
     "cassiaSokcho": "Cassia Sokcho",
     "seoraksan": "Parco nazionale di Seoraksan",
     "sinheungsa": "Tempio Sinheungsa",
+    "availability": {
+      "inStock": "Disponibile",
+      "low": "Disponibilità limitata",
+      "soldOut": "Esaurito"
+    },
     "panel": {
       "close": "Chiudi",
       "category": "Categoria",
-      "book": "Prenota / Info"
+      "book": "Prenota / Info",
+      "hours": "Orari",
+      "address": "Indirizzo",
+      "phone": "Telefono",
+      "menu": "Menu / Prezzi",
+      "travel": "Tempo di viaggio",
+      "walk": "A piedi",
+      "car": "Auto",
+      "transit": "Trasporti",
+      "min": " min",
+      "noInfo": "Dettagli in arrivo.",
+      "sampleNote": "* Le informazioni mostrate sono dati di esempio; integrazione API in arrivo."
     }
   },
   "category": {

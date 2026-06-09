@@ -27,13 +27,30 @@
   "poi": {
     "sokchoEye": "束草之眼",
     "sokchoMarket": "束草观光水产市场",
+    "bongpoMeoguri": "蓬浦海螺屋",
     "cassiaSokcho": "束草凯莱卡西亚",
     "seoraksan": "雪岳山国立公园",
     "sinheungsa": "新兴寺",
+    "availability": {
+      "inStock": "有空位",
+      "low": "余量少",
+      "soldOut": "已售罄"
+    },
     "panel": {
       "close": "关闭",
       "category": "分类",
-      "book": "预订 / 信息"
+      "book": "预订 / 信息",
+      "hours": "营业时间",
+      "address": "地址",
+      "phone": "电话",
+      "menu": "菜单 / 价格",
+      "travel": "交通时间",
+      "walk": "步行",
+      "car": "驾车",
+      "transit": "公共交通",
+      "min": "分钟",
+      "noInfo": "详细信息即将推出。",
+      "sampleNote": "※ 所示信息为示例数据，后续将接入实际 API。"
     }
   },
   "category": {

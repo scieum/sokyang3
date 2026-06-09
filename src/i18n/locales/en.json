@@ -27,13 +27,30 @@
   "poi": {
     "sokchoEye": "Sokcho Eye",
     "sokchoMarket": "Sokcho Tourist & Fishery Market",
+    "bongpoMeoguri": "Bongpo Meoguri-jip",
     "cassiaSokcho": "Kensington Cassia Sokcho",
     "seoraksan": "Seoraksan National Park",
     "sinheungsa": "Sinheungsa Temple",
+    "availability": {
+      "inStock": "Available",
+      "low": "Limited",
+      "soldOut": "Sold out"
+    },
     "panel": {
       "close": "Close",
       "category": "Category",
-      "book": "Book / Info"
+      "book": "Book / Info",
+      "hours": "Hours",
+      "address": "Address",
+      "phone": "Phone",
+      "menu": "Menu / Prices",
+      "travel": "Travel time",
+      "walk": "Walk",
+      "car": "Car",
+      "transit": "Transit",
+      "min": " min",
+      "noInfo": "Details coming soon.",
+      "sampleNote": "* Shown info is sample data; live API integration to follow."
     }
   },
   "category": {

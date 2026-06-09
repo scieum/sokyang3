@@ -5,6 +5,48 @@ export interface GeoPosition {
   height?: number;
 }
 
+/** 재고/예약 가능 상태 */
+export type AvailabilityStatus = 'inStock' | 'low' | 'soldOut';
+
+/** 메뉴 항목 */
+export interface MenuItem {
+  /** 표시 이름 (현지 콘텐츠) */
+  name: string;
+  /** 가격 (KRW) */
+  price: number;
+}
+
+/** 이동 소요 시간 (분) — 기준점(속초 앵커)에서의 추정치 */
+export interface TravelTimes {
+  walk?: number;
+  car?: number;
+  transit?: number;
+}
+
+/**
+ * POI 상세 정보.
+ * 현재는 샘플 데이터이며, 추후 Kakao/Naver/공공데이터 API(TanStack Query)로 대체한다.
+ */
+export interface PoiDetails {
+  /** 소개 문구 */
+  description?: string;
+  /** 운영시간 문자열 (예: "매일 10:00–21:00") */
+  hours?: string;
+  address?: string;
+  phone?: string;
+  /** 평점 (0–5) */
+  rating?: number;
+  /** 리뷰 수 */
+  reviewCount?: number;
+  /** 가격대 표기 (예: "₩₩") */
+  priceRange?: string;
+  menu?: MenuItem[];
+  travel?: TravelTimes;
+  availability?: AvailabilityStatus;
+  /** 인테리어/외관 사진 URL 목록 */
+  photos?: string[];
+}
+
 /** 관광/상권 POI */
 export interface Poi {
   id: string;
@@ -14,6 +56,8 @@ export interface Poi {
   position: GeoPosition;
   /** B2B 예약/광고 링크 (선택) */
   link?: string;
+  /** 상세 정보 (운영시간·메뉴·평점·이동시간·재고·사진 등) */
+  details?: PoiDetails;
 }
 
 /** 트래킹 한 지점 (좌표 + 타임스탬프) */

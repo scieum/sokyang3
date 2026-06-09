@@ -27,13 +27,30 @@
   "poi": {
     "sokchoEye": "속초아이",
     "sokchoMarket": "속초관광수산시장",
+    "bongpoMeoguri": "봉포머구리집",
     "cassiaSokcho": "카시아 속초",
     "seoraksan": "설악산 국립공원",
     "sinheungsa": "신흥사",
+    "availability": {
+      "inStock": "여유 있음",
+      "low": "잔여 적음",
+      "soldOut": "매진"
+    },
     "panel": {
       "close": "닫기",
       "category": "분류",
-      "book": "예약 / 정보"
+      "book": "예약 / 정보",
+      "hours": "운영시간",
+      "address": "주소",
+      "phone": "전화",
+      "menu": "메뉴 / 가격",
+      "travel": "이동 시간",
+      "walk": "도보",
+      "car": "자동차",
+      "transit": "대중교통",
+      "min": "분",
+      "noInfo": "상세 정보가 곧 추가됩니다.",
+      "sampleNote": "※ 표시된 정보는 예시 데이터이며, 추후 실제 API로 연동됩니다."
     }
   },
   "category": {
