@@ -2,8 +2,9 @@ import { useEffect, useRef } from 'react';
 import * as Cesium from 'cesium';
 import { useTranslation } from 'react-i18next';
 import { useCesiumViewer } from './useCesiumViewer';
+import { fetchOsmBuildings, type OsmBuilding } from './osmBuildings';
 import { useAppStore } from '@/store';
-import { SEED_POIS } from '@/lib/constants';
+import { SEED_POIS, SOKCHO_BBOX } from '@/lib/constants';
 import type { Poi } from '@/types';
 
 /** 카테고리별 3D 건물(입체) 형상: 높이(m)·반경(m)·색상. 자연(산)은 건물 없음. */
@@ -29,6 +30,10 @@ export function CesiumMap() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { viewer, error } = useCesiumViewer(containerRef);
   const { t } = useTranslation();
+
+  // 생성된 건물 엔티티 + OSM 응답 캐시 (토글 시 재요청 방지)
+  const buildingsRef = useRef<Cesium.Entity[]>([]);
+  const osmCacheRef = useRef<OsmBuilding[] | null>(null);
 
   const setSelectedPoi = useAppStore((s) => s.setSelectedPoi);
   const trackPoints = useAppStore((s) => s.trackPoints);
@@ -73,29 +78,6 @@ export function CesiumMap() {
           },
         }),
       );
-
-      // 3D 입체 건물 (자연 카테고리는 제외)
-      const b = BUILDING[poi.category];
-      if (b) {
-        entities.push(
-          viewer.entities.add({
-            id: `bldg-${poi.id}`,
-            position: Cesium.Cartesian3.fromDegrees(
-              poi.position.longitude,
-              poi.position.latitude,
-            ),
-            ellipse: {
-              semiMinorAxis: b.radius,
-              semiMajorAxis: b.radius,
-              height: 0,
-              extrudedHeight: b.height,
-              material: Cesium.Color.fromCssColorString(b.color).withAlpha(0.9),
-              outline: true,
-              outlineColor: Cesium.Color.WHITE.withAlpha(0.35),
-            },
-          }),
-        );
-      }
     });
 
     const handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
@@ -114,16 +96,93 @@ export function CesiumMap() {
     };
   }, [viewer, t, setSelectedPoi]);
 
-  // POI 레이어 토글
+  // POI 마커 레이어 토글
   useEffect(() => {
     if (!viewer) return;
     SEED_POIS.forEach((poi) => {
       const marker = viewer.entities.getById(`poi-${poi.id}`);
       if (marker) marker.show = layers.pois;
-      const bldg = viewer.entities.getById(`bldg-${poi.id}`);
-      if (bldg) bldg.show = layers.pois;
     });
   }, [viewer, layers.pois]);
+
+  // 실제 3D 건물 레이어 (OSM Overpass). 실패 시 합성 건물로 폴백.
+  useEffect(() => {
+    if (!viewer) return;
+    let cancelled = false;
+    const created = buildingsRef.current;
+
+    const clear = () => {
+      created.forEach((e) => viewer.entities.remove(e));
+      created.length = 0;
+    };
+
+    const addReal = (list: OsmBuilding[]) => {
+      list.forEach((bld) => {
+        created.push(
+          viewer.entities.add({
+            polygon: {
+              hierarchy: new Cesium.PolygonHierarchy(
+                Cesium.Cartesian3.fromDegreesArray(bld.coords),
+              ),
+              height: 0,
+              extrudedHeight: bld.height,
+              material: Cesium.Color.fromCssColorString('#cbd5e1').withAlpha(0.88),
+              outline: true,
+              outlineColor: Cesium.Color.fromCssColorString('#64748b'),
+            },
+          }),
+        );
+      });
+    };
+
+    const addSynthetic = () => {
+      SEED_POIS.forEach((poi) => {
+        const b = BUILDING[poi.category];
+        if (!b) return;
+        created.push(
+          viewer.entities.add({
+            position: Cesium.Cartesian3.fromDegrees(
+              poi.position.longitude,
+              poi.position.latitude,
+            ),
+            ellipse: {
+              semiMinorAxis: b.radius,
+              semiMajorAxis: b.radius,
+              height: 0,
+              extrudedHeight: b.height,
+              material: Cesium.Color.fromCssColorString(b.color).withAlpha(0.9),
+              outline: true,
+              outlineColor: Cesium.Color.WHITE.withAlpha(0.35),
+            },
+          }),
+        );
+      });
+    };
+
+    if (!layers.buildings) {
+      clear();
+      return;
+    }
+    if (created.length > 0) return; // 이미 그려져 있음
+
+    if (osmCacheRef.current) {
+      if (osmCacheRef.current.length) addReal(osmCacheRef.current);
+      else addSynthetic();
+      return;
+    }
+
+    fetchOsmBuildings(SOKCHO_BBOX).then((list) => {
+      if (cancelled) return;
+      osmCacheRef.current = list;
+      if (!layers.buildings) return;
+      if (list.length) addReal(list);
+      else addSynthetic();
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [viewer, layers.buildings]);
 
   // ② 트래킹 궤적 폴리라인
   useEffect(() => {

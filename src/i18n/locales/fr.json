@@ -9,6 +9,7 @@
   "panel": {
     "layers": "Calques",
     "pois": "Sites touristiques",
+    "buildings": "Bâtiments 3D",
     "track": "Parcours",
     "shadows": "Analyse d'ombre"
   },

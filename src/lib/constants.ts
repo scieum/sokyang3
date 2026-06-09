@@ -7,6 +7,14 @@ export const SOKCHO_ANCHOR = {
   height: 1500,
 } as const;
 
+/** 실제 건물(OSM)을 불러올 속초 도심 경계 박스 */
+export const SOKCHO_BBOX = {
+  south: 38.198,
+  west: 128.583,
+  north: 38.216,
+  east: 128.601,
+} as const;
+
 /**
  * Wikimedia Commons 실제 사진을 안정적인 Special:FilePath 로 참조한다.
  * (파일명 기준으로 항상 현재 원본/썸네일로 리다이렉트됨)
@@ -148,6 +156,90 @@ export const SEED_POIS: Poi[] = [
         wiki('Korea-Sinheungsa-Bojero-01.jpg'),
         wiki('Seoraksan_Panorama.JPG'),
       ],
+    },
+  },
+  // 실제 주변 명소 (정확한 위치 기반). 이름은 현지 표기를 그대로 사용한다.
+  {
+    id: 'yeonggeumjeong',
+    nameKey: '영금정',
+    category: 'nature',
+    position: { longitude: 128.5997, latitude: 38.2106 },
+    details: {
+      description: '동명항 옆 바닷가 바위 위 정자. 일출 명소로 유명.',
+      hours: '상시 개방',
+      address: '강원특별자치도 속초시 영금정로 43',
+      rating: 4.4,
+      reviewCount: 1320,
+      priceRange: '₩',
+      travel: { walk: 28, car: 7, transit: 16 },
+      availability: 'inStock',
+    },
+  },
+  {
+    id: 'abai-village',
+    nameKey: '아바이마을',
+    category: 'culture',
+    position: { longitude: 128.5945, latitude: 38.2006 },
+    details: {
+      description: '실향민이 모여 형성한 마을. 갯배·아바이순대로 유명.',
+      hours: '상시 (점포별 상이)',
+      address: '강원특별자치도 속초시 청호로 122',
+      rating: 4.3,
+      reviewCount: 2870,
+      priceRange: '₩₩',
+      travel: { walk: 20, car: 6, transit: 13 },
+      availability: 'inStock',
+      waitBaseline: 18,
+      photos: [wiki('Abai_village_-_5433870634.jpg')],
+    },
+  },
+  {
+    id: 'sokcho-beach',
+    nameKey: '속초해수욕장',
+    category: 'nature',
+    position: { longitude: 128.601, latitude: 38.1888 },
+    details: {
+      description: '백사장이 넓은 속초 대표 해수욕장.',
+      hours: '상시 (해수욕 기간 한정 운영)',
+      address: '강원특별자치도 속초시 해오름로 190',
+      rating: 4.5,
+      reviewCount: 4100,
+      priceRange: '₩',
+      travel: { walk: 40, car: 9, transit: 22 },
+      availability: 'inStock',
+    },
+  },
+  {
+    id: 'yeongnangho',
+    nameKey: '영랑호',
+    category: 'nature',
+    position: { longitude: 128.596, latitude: 38.2148 },
+    details: {
+      description: '둘레길이 잘 조성된 석호. 설악산 울산바위 조망.',
+      hours: '상시 개방',
+      address: '강원특별자치도 속초시 영랑호반길',
+      rating: 4.5,
+      reviewCount: 1980,
+      priceRange: '₩',
+      travel: { walk: 33, car: 8, transit: 19 },
+      availability: 'inStock',
+    },
+  },
+  {
+    id: 'daepohang',
+    nameKey: '대포항',
+    category: 'market',
+    position: { longitude: 128.6029, latitude: 38.1707 },
+    details: {
+      description: '활어회·새우튀김으로 유명한 항구 상권.',
+      hours: '매일 08:00–21:00 (점포별 상이)',
+      address: '강원특별자치도 속초시 대포항길 17',
+      rating: 4.2,
+      reviewCount: 3540,
+      priceRange: '₩₩',
+      travel: { walk: 75, car: 12, transit: 30 },
+      availability: 'inStock',
+      waitBaseline: 25,
     },
   },
 ];

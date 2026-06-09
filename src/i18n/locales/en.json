@@ -9,6 +9,7 @@
   "panel": {
     "layers": "Layers",
     "pois": "Attractions",
+    "buildings": "3D buildings",
     "track": "Track",
     "shadows": "Shadow Analysis"
   },

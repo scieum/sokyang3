@@ -9,6 +9,7 @@
   "panel": {
     "layers": "Ebenen",
     "pois": "Sehenswürdigkeiten",
+    "buildings": "3D-Gebäude",
     "track": "Route",
     "shadows": "Schattenanalyse"
   },

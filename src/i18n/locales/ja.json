@@ -9,6 +9,7 @@
   "panel": {
     "layers": "レイヤー",
     "pois": "観光スポット",
+    "buildings": "3D 建物",
     "track": "移動軌跡",
     "shadows": "影分析"
   },

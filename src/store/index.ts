@@ -5,6 +5,7 @@ import { totalDistance } from '@/lib/geo';
 /** 레이어 토글 상태 */
 export interface LayerToggles {
   pois: boolean;
+  buildings: boolean;
   track: boolean;
   shadows: boolean;
 }
@@ -50,7 +51,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   analysisDate: new Date(),
   setAnalysisDate: (date) => set({ analysisDate: date }),
 
-  layers: { pois: true, track: true, shadows: false },
+  layers: { pois: true, buildings: true, track: true, shadows: false },
   toggleLayer: (key) =>
     set((state) => ({ layers: { ...state.layers, [key]: !state.layers[key] } })),
 }));

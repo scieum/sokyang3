@@ -9,6 +9,7 @@
   "panel": {
     "layers": "图层",
     "pois": "景点",
+    "buildings": "3D 建筑",
     "track": "轨迹",
     "shadows": "阴影分析"
   },
