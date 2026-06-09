@@ -35,6 +35,11 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # 저장소 Secret 에 키를 넣으면 빌드 시 주입되어 실사 3D 도시가 적용됨.
+          # (없으면 빈 값 → 기존 OSM 모드로 동작)
+          VITE_GOOGLE_MAPS_API_KEY: ${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}
+          VITE_CESIUM_ION_TOKEN: ${{ secrets.VITE_CESIUM_ION_TOKEN }}
 
       # 끝 슬래시 없는 경로/딥링크에서도 앱이 뜨도록 SPA 폴백 제공
       - name: SPA fallback (404.html)
