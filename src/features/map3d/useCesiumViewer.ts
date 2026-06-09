@@ -69,10 +69,6 @@ export function useCesiumViewer(
           );
       }
 
-      // 3D 입체감을 살리기 위한 장면 설정
-      instance.scene.globe.depthTestAgainstTerrain = true;
-      instance.scene.globe.enableLighting = true;
-
       // 속초 앵커를 비스듬히 내려다보는 3D 오블리크 시점
       // (정남쪽 약간 아래에서 북쪽을 바라보며 pitch -35°)
       instance.camera.setView({

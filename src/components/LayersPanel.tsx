@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/store';
 import type { LayerToggles } from '@/store';
 
-const LAYER_KEYS: (keyof LayerToggles)[] = ['pois', 'buildings', 'track'];
+const LAYER_KEYS: (keyof LayerToggles)[] = ['pois', 'track'];
 
 /** 레이어 토글 패널 (관광 명소 / 이동 궤적). 그림자는 SunPanel 에서 제어. */
 export function LayersPanel() {
