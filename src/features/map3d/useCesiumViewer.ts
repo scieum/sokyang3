@@ -54,14 +54,19 @@ export function useCesiumViewer(
         shadows: false,
       });
 
-      // 광역 사실적 3D 타일 (Google) — 키가 있을 때만 로드
+      // 광역 사실적 3D 도시 타일 (Google Photorealistic 3D Tiles) — 키가 있을 때만
       if (GOOGLE_KEY) {
-        Cesium.Cesium3DTileset.fromUrl(
-          `https://tile.googleapis.com/v1/3dtiles/root.json?key=${GOOGLE_KEY}`,
-          { showCreditsOnScreen: true },
-        )
-          .then((tileset) => instance?.scene.primitives.add(tileset))
-          .catch((err) => console.warn('[TOT] Google 3D Tiles 로드 실패:', err));
+        Cesium.GoogleMaps.defaultApiKey = GOOGLE_KEY;
+        Cesium.createGooglePhotorealistic3DTileset()
+          .then((tileset) => {
+            if (!instance || instance.isDestroyed()) return;
+            instance.scene.primitives.add(tileset);
+            // 3D 타일이 지형·건물·텍스처를 모두 제공하므로 기본 지구본/이미지는 숨김
+            instance.scene.globe.show = false;
+          })
+          .catch((err) =>
+            console.warn('[TOT] Google 3D Tiles 로드 실패:', err),
+          );
       }
 
       // 3D 입체감을 살리기 위한 장면 설정

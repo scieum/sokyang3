@@ -159,6 +159,12 @@ export function CesiumMap() {
       });
     };
 
+    // Google Photorealistic 3D Tiles 가 활성화된 경우 실사 타일이 건물을 포함하므로
+    // OSM 합성/회색 건물은 그리지 않는다.
+    if (import.meta.env.VITE_GOOGLE_MAPS_API_KEY) {
+      clear();
+      return;
+    }
     if (!layers.buildings) {
       clear();
       return;
