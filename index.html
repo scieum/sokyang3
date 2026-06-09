@@ -7,7 +7,14 @@
     <title>TOT — Travel of Traveler</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- JS 로드/실행 전에도 흰 화면 대신 보이는 폴백 스플래시. React 마운트 시 교체됨. -->
+      <div id="boot-splash" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:#0f172a;color:#f1f5f9;font-family:system-ui,sans-serif;">
+        <div style="font-size:28px;font-weight:700;color:#2dd4bf;">TOT</div>
+        <div style="font-size:13px;color:#94a3b8;">Travel of Traveler — 로딩 중…</div>
+        <noscript style="font-size:13px;color:#f87171;">이 앱을 보려면 JavaScript를 활성화하세요.</noscript>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

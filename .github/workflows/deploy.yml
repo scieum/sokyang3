@@ -36,6 +36,10 @@ jobs:
       - name: Build
         run: npm run build
 
+      # 끝 슬래시 없는 경로/딥링크에서도 앱이 뜨도록 SPA 폴백 제공
+      - name: SPA fallback (404.html)
+        run: cp dist/index.html dist/404.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
