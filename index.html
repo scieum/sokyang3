@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="TOT (Travel of Traveler) — 속초·고성·양양을 3D로 미리 소유하는 관광 특화 웹앱" />
     <title>TOT — Travel of Traveler</title>
+    <script>
+      // 번들 평가/실행 중 발생한 오류를 흰 화면/무한 로딩 대신 화면에 표시한다.
+      (function () {
+        function showBootError(msg) {
+          var s = document.getElementById('boot-splash');
+          if (!s) return;
+          s.innerHTML =
+            '<div style="max-width:90%;text-align:center;color:#f87171;font-family:system-ui,sans-serif;">' +
+            '<div style="font-size:20px;font-weight:700;margin-bottom:8px;">TOT 로딩 오류</div>' +
+            '<pre style="white-space:pre-wrap;word-break:break-all;font-size:12px;text-align:start;">' +
+            String(msg).replace(/[<>&]/g, '') +
+            '</pre></div>';
+        }
+        window.addEventListener('error', function (e) {
+          showBootError((e.message || 'Error') + (e.filename ? '\n' + e.filename + ':' + e.lineno : ''));
+        });
+        window.addEventListener('unhandledrejection', function (e) {
+          var r = e.reason;
+          showBootError('Promise: ' + (r && (r.stack || r.message) ? r.stack || r.message : r));
+        });
+      })();
+    </script>
   </head>
   <body>
     <div id="root">
