@@ -49,6 +49,13 @@
       "car": "驾车",
       "transit": "公共交通",
       "min": "分钟",
+      "wait": "预计等待",
+      "noWait": "无需等待",
+      "congestion": {
+        "low": "空闲",
+        "medium": "适中",
+        "high": "拥挤"
+      },
       "noInfo": "详细信息即将推出。",
       "sampleNote": "※ 所示信息为示例数据，后续将接入实际 API。"
     }

@@ -43,6 +43,12 @@ export interface PoiDetails {
   menu?: MenuItem[];
   travel?: TravelTimes;
   availability?: AvailabilityStatus;
+  /**
+   * 피크 시간대 기준 평균 대기 시간(분).
+   * 이 값이 있으면 현재 시각·요일을 반영해 예상 웨이팅을 산출한다.
+   * 대기 개념이 없는 장소(자연·사찰 등)는 생략한다.
+   */
+  waitBaseline?: number;
   /** 인테리어/외관 사진 URL 목록 */
   photos?: string[];
 }

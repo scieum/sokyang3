@@ -340,6 +340,18 @@ body,
   color: var(--accent);
 }
 
+.wait-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wait-time {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
 .travel-row {
   display: flex;
   gap: 10px;

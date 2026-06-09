@@ -49,6 +49,13 @@
       "car": "Car",
       "transit": "Transit",
       "min": " min",
+      "wait": "Est. wait",
+      "noWait": "Walk right in",
+      "congestion": {
+        "low": "Quiet",
+        "medium": "Moderate",
+        "high": "Busy"
+      },
       "noInfo": "Details coming soon.",
       "sampleNote": "* Shown info is sample data; live API integration to follow."
     }

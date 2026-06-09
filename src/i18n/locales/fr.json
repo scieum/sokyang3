@@ -49,6 +49,13 @@
       "car": "Voiture",
       "transit": "Transports",
       "min": " min",
+      "wait": "Attente estimée",
+      "noWait": "Entrée immédiate",
+      "congestion": {
+        "low": "Calme",
+        "medium": "Modéré",
+        "high": "Affluence"
+      },
       "noInfo": "Détails à venir.",
       "sampleNote": "* Les informations affichées sont des exemples ; intégration API à venir."
     }

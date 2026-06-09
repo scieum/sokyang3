@@ -49,6 +49,13 @@
       "car": "Auto",
       "transit": "ÖPNV",
       "min": " Min.",
+      "wait": "Voraussichtl. Wartezeit",
+      "noWait": "Sofort hinein",
+      "congestion": {
+        "low": "Ruhig",
+        "medium": "Mäßig",
+        "high": "Stark"
+      },
       "noInfo": "Details folgen in Kürze.",
       "sampleNote": "* Angezeigte Daten sind Beispieldaten; API-Anbindung folgt."
     }

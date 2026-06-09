@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { useAppStore } from '@/store';
 import type { AvailabilityStatus, TravelTimes } from '@/types';
+import { predictWaitTime, type CongestionLevel } from './wait';
 
 /** ₩ 가격 포맷 */
 const formatPrice = (krw: number) => `₩${krw.toLocaleString('ko-KR')}`;
@@ -11,6 +12,13 @@ const availabilityClass: Record<AvailabilityStatus, string> = {
   inStock: 'badge-ok',
   low: 'badge-warn',
   soldOut: 'badge-danger',
+};
+
+/** 혼잡도 등급 → 배지 색상 클래스 */
+const congestionClass: Record<CongestionLevel, string> = {
+  low: 'badge-ok',
+  medium: 'badge-warn',
+  high: 'badge-danger',
 };
 
 function TravelRow({ travel }: { travel: TravelTimes }) {
@@ -50,6 +58,7 @@ export function PoiPanel() {
 
   if (!poi) return null;
   const d = poi.details;
+  const wait = predictWaitTime(poi);
 
   return (
     <aside className="poi-panel">
@@ -108,6 +117,21 @@ export function PoiPanel() {
       )}
 
       {d?.description && <p className="poi-desc">{d.description}</p>}
+
+      {/* 예상 웨이팅 (현재 시각·요일 기반 예측) */}
+      {wait && (
+        <section className="poi-section">
+          <h3 className="poi-section-title">{t('poi.panel.wait')}</h3>
+          <div className="wait-row">
+            <span className="wait-time">
+              {wait.minutes === 0 ? t('poi.panel.noWait') : `~ ${wait.minutes}${t('poi.panel.min')}`}
+            </span>
+            <span className={`chip ${congestionClass[wait.level]}`}>
+              {t(`poi.panel.congestion.${wait.level}`)}
+            </span>
+          </div>
+        </section>
+      )}
 
       {/* 이동 소요 시간 */}
       {d?.travel && (

@@ -27,6 +27,7 @@ export const SEED_POIS: Poi[] = [
       priceRange: '₩',
       travel: { walk: 22, car: 6, transit: 14 },
       availability: 'inStock',
+      waitBaseline: 25,
       photos: [
         'https://picsum.photos/seed/sokcho-eye-1/640/360',
         'https://picsum.photos/seed/sokcho-eye-2/640/360',
@@ -48,6 +49,7 @@ export const SEED_POIS: Poi[] = [
       priceRange: '₩₩',
       travel: { walk: 18, car: 5, transit: 11 },
       availability: 'inStock',
+      waitBaseline: 20,
       photos: [
         'https://picsum.photos/seed/sokcho-market-1/640/360',
         'https://picsum.photos/seed/sokcho-market-2/640/360',
@@ -76,6 +78,7 @@ export const SEED_POIS: Poi[] = [
       ],
       travel: { walk: 41, car: 9, transit: 23 },
       availability: 'low',
+      waitBaseline: 40,
       photos: [
         'https://picsum.photos/seed/bongpo-1/640/360',
         'https://picsum.photos/seed/bongpo-2/640/360',
